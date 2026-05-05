@@ -3,23 +3,28 @@ public:
     int maxProfit(vector<int>& prices) {
 
         int minPrice = INT_MAX;
-        int profit=0;
+        int maxProfit = 0;
 
-
-        for(int x : prices){
+        for( int x : prices){
 
             if(minPrice > x){
+
                 minPrice = x;
-            }
-            else{
-
-                profit = max( profit, x - minPrice);
 
             }
+            else{   
+
+
+                maxProfit = max(maxProfit , x - minPrice);
+
+
+
+            }
+
 
 
         }
 
-        return profit;
+        return maxProfit;
     }
 };
