@@ -2,22 +2,23 @@ class Solution {
 public:
     int climbStairs(int n) {
 
-        unordered_map<int,int> dp;
-
         if( n <= 2){
             return n;
         }
 
-        dp[1] = 1;
-        dp[2] = 2;
+        int prev1 = 1;
+        int prev2 = 2; 
+        int numberSteps = 0;
 
         for( int i = 3 ; i <= n ; ++i){
 
-            dp[i] = dp[i - 1] + dp[i - 2];
+            numberSteps = prev1 + prev2;
+            prev2 = numberSteps;
+            prev1 = numberSteps - prev1; 
 
         }
         
-        return dp[n];
+        return numberSteps;
         
     }
 };
