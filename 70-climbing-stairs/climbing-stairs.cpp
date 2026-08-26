@@ -1,24 +1,21 @@
 class Solution {
 public:
+
+    unordered_map<int, int> dp;
     int climbStairs(int n) {
+
 
         if( n <= 2){
             return n;
         }
-
-        int prev1 = 1;
-        int prev2 = 2; 
-        int numberSteps = 0;
-
-        for( int i = 3 ; i <= n ; ++i){
-
-            numberSteps = prev1 + prev2;
-            prev2 = numberSteps;
-            prev1 = numberSteps - prev1; 
-
+        else if(dp.find(n) != dp.end()){
+            return dp[n];
         }
-        
-        return numberSteps;
-        
+        else{
+            dp[n] = climbStairs(n-1) + climbStairs(n-2);
+        }
+
+        return dp[n];
+   
     }
 };
