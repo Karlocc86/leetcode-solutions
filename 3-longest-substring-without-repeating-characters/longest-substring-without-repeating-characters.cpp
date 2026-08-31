@@ -7,23 +7,29 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
 
+        if(s.size() == 0) return 0;
+
+        unordered_map<int,int> visited;
+
         int left = 0;
-        int res = 0;
+        int right = 0;
+        int longestSubtring = INT_MIN;
 
-        std::unordered_set<char> seen;
+        for(char c : s){
 
-
-        for( int right = 0 ; right < s.size() ; ++right){
-
-            while(seen.count(s[right])){
-                seen.erase(s[left]);
+        
+            while(visited[c] == 1 ){
+                visited[s[left]]--;
                 left++;
             }
 
-            seen.insert(s[right]);
-            res = max(res , right - left + 1);
+            longestSubtring = max(longestSubtring, right - left + 1);
+            visited[c]++;
+            right++;
+
         }
 
-        return res;
+        return longestSubtring;
+
     }
 };
