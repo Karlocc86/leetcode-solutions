@@ -13,7 +13,7 @@ class Solution {
 
 private:
 
-    void backtrack(TreeNode* node, int targetSum, vector<vector<int>>& solution, vector<int> path){
+    void backtrack(TreeNode* node, int targetSum, vector<vector<int>>& solution, vector<int>& path){
 
         if(!node) return;
 
@@ -22,7 +22,6 @@ private:
 
         if(!node->left && !node->right && remain == 0){
             solution.push_back(path);
-            return;
 
         }else{
             
@@ -30,10 +29,7 @@ private:
             backtrack(node-> right , remain, solution, path);
 
         }
-
         path.pop_back();
-
-
     }
 
 
@@ -41,8 +37,9 @@ public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
 
         vector<vector<int>> solution;
+        vector<int> path;
 
-        backtrack(root, targetSum, solution, {});
+        backtrack(root, targetSum, solution, path);
 
         return solution;
         
