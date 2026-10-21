@@ -4,20 +4,24 @@ public:
 
         if(s.size() != t.size()) return false;
 
-       vector<int> maicountermailegacy(26,0);
+        vector<int> alp(26, 0);
 
-        for( int i = 0 ; i < s.size() ; ++i ){
+        for(char c : s){
 
-            maicountermailegacy[s[i] -'a']++;
-            maicountermailegacy[t[i] - 'a']--;
-
+            alp[c - 'a']++;
         }
-       
 
-        for(int x : maicountermailegacy){
+        for(char c : t){
+
+            alp[c - 'a']--;
+        }
+
+        for(int x : alp){
             if(x != 0) return false;
         }
 
-        return true;
+    return true;
+
+        
     }
 };
