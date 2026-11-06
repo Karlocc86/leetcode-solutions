@@ -5,18 +5,23 @@ class Solution {
 public:
     std::vector<int> twoSum(std::vector<int>& nums, int target) {
 
-        unordered_map<int , int> mp;
-        int complement;
+        std::unordered_map<int,int> complements;
 
         for(int i = 0 ; i < nums.size() ; i++){
-            complement = target - nums[i];
 
-            if(mp.count(complement) == 1){
-                return {i , mp[complement]};
-            }else{
-                mp[nums[i]] = i;
-            }
+            int complement = target - nums[i];
+
+            if(complements.count(complement)){
+
+                return {i , complements[complement]};
+            } 
+
+            complements[nums[i]] = i;
+            
         }
+
         return {};
+
+       
     }
 };
