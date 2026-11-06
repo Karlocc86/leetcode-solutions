@@ -2,26 +2,22 @@ class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
 
-        vector<vector<string>> sol;
-        unordered_map<string, vector<string>> grpAnm;
-        for(string& s : strs){
-            vector<int> cont(26,0);
-            for(char& c : s){
-                cont[c - 'a']++;
-            }
-            string key = {};
-            for(int i = 0 ; i < 26 ; i++){
-                key += to_string(cont[i]);
-                key += '#';
-            }
+        std::vector<std::vector<string>> sol;
 
-            grpAnm[key].push_back(s);
+        std::unordered_map<string, std::vector<std::string>> lockers;
+
+        for(string& str : strs){
+
+            string temp = str;
+            sort(str.begin() , str.end());
+            lockers[str].push_back(temp);
         }
 
-        for(auto& pair : grpAnm){
+        for(auto& pair : lockers){
             sol.push_back(pair.second);
         }
 
         return sol;
+
     }
 };
