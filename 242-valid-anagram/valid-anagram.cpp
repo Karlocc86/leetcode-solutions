@@ -2,25 +2,24 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
 
-        if(s.size() != t.size()) return false;
-
-        vector<int> alp(26, 0);
+        vector<int> seen(26,0);
 
         for(char c : s){
-
-            alp[c - 'a']++;
+            
+            seen[c - 'a']++;
         }
 
         for(char c : t){
-
-            alp[c - 'a']--;
+            seen[c - 'a']--;
         }
 
-        for(int x : alp){
-            if(x != 0) return false;
+        for(int x : seen){
+            if(x != 0){
+                return false;
+            }
         }
 
-    return true;
+        return true;
 
         
     }
